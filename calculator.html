@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="styles.css">
+	<script src="jQuery-3.3.1.js"></script>
+	<title>My Calculator</title>
+	<style>
+		html {
+			background-color: #f0f0f0;
+			margin: 0;
+			padding: 2rem;
+			height: auto;
+			display: flex;
+			justify-content: center;
+			zoom: 2.0;
+		}
+
+		body {
+			background-color: #fff;
+			font-family: Arial, sans-serif;
+			border: 2px solid #ddd;
+			margin-top: 5rem;
+			width: 1000px;
+			padding: 2rem;
+		}
+
+		
+		@media (max-width: 3000px) {
+			html {
+				zoom: 1.2;
+			}
+		}
+
+		@media (max-width: 1600px) {
+			html {
+				zoom: 1.0;
+			}
+		}
+
+		@media (max-width: 800px) {
+			html {
+				zoom: 0.5;
+			}
+		}
+
+		@media (max-width: 500px) {
+			html {
+				zoom: 0;
+			}
+		}
+		
+		#nav {
+			text-align: center;
+			margin-bottom: 100px;
+		}
+
+		#nav a {
+			text-decoration: none;
+			color: #333;
+			margin: 0 20px;
+			font-size: 40px;
+			position: relative;
+			padding-bottom: 10px;
+		}
+
+		#nav a::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80%;
+			height: 5px;
+			border-radius: 35px;
+			background-color: #007bff;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		#nav a:hover::after {
+			opacity: 1;
+		}
+
+		#calculator {
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 80px;
+			margin-bottom: 40px;
+		}
+
+		p {
+			font-size: 48px;
+			margin-bottom: 30px;
+			line-height: 1.5;
+		}
+
+		.input {
+			display: flex;
+			justify-content: center;
+			gap: 15px;
+		}
+
+		input[type="number"] {
+			font-size: 64px;
+			padding: 20px;
+			width: 400px;
+			text-align: center;
+		}
+
+		#button {
+			font-size: 60px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 15px;
+			padding: 30px 40px;
+			margin-top: 40px;
+			cursor: pointer;
+		}
+
+		#button:hover {
+			background-color: #0056b3;
+		}
+
+		#result {
+			font-size: 60px;
+			margin-top: 40px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="nav">
+		<a href="/index.html">Home</a>
+		<a href="/calculator.html">About Me</a>
+		<a href="/calculator.html">Calculator</a>
+	</div>
+	<div id="calculator">
+		<h1>Calculator</h1>
+		<p>Enter two Numbers:</p>
+		<p>Click the button to find their PRODUCT or Double Click for QUOTIENT</p>
+		<div class="input">
+			<input id="num1" type="number">
+			<input id="num2" type="number">
+		</div>
+		<button id="button">Click or Double Click</button>
+		<p id="result"></p>
+	</div>
+	<script>
+		$(document).ready(function () {
+			$("#button").on("click", function () {
+				var num1 = parseFloat($("#num1").val());
+				var num2 = parseFloat($("#num2").val());
+
+				if (!isNaN(num1) && !isNaN(num2)) {
+					var result = num1 * num2;
+					$("#result").text("Result: " + result);
+				} else {
+					$("#result").text("Please enter valid numbers.");
+				}
+			});
+
+			$("#button").on("dblclick", function () {
+				var num1 = parseFloat($("#num1").val());
+				var num2 = parseFloat($("#num2").val());
+
+				if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+					var result = num1 / num2;
+					$("#result").text("Quotient: " + result);
+				} else {
+					$("#result").text("Please enter valid numbers and make sure the divisor is not zero.");
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
